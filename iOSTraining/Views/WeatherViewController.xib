@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WeatherViewController" customModule="iOSTraining" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="weatherImageView" destination="2V7-zK-QBq" id="Tr8-Og-hD4"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -66,6 +67,9 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QQV-b3-VcA" userLabel="Reload Button">
                             <rect key="frame" x="103.33333333333331" y="0.0" width="103.66666666666669" height="30"/>
                             <state key="normal" title="Reload"/>
+                            <connections>
+                                <action selector="onClickReloadButton:" destination="-1" eventType="touchUpInside" id="uP6-Za-qNu"/>
+                            </connections>
                         </button>
                     </subviews>
                 </stackView>

@@ -16,6 +16,9 @@
 		A2D84385265C8089003A9606 /* iOSTrainingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D84384265C8089003A9606 /* iOSTrainingTests.swift */; };
 		A2D84390265C8089003A9606 /* iOSTrainingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D8438F265C8089003A9606 /* iOSTrainingUITests.swift */; };
 		A2D8439F265C814B003A9606 /* YumemiWeather in Frameworks */ = {isa = PBXBuildFile; productRef = A2D8439E265C814B003A9606 /* YumemiWeather */; };
+		A2DBA2C8265FD1070000E363 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DBA2C7265FD1070000E363 /* Extension.swift */; };
+		A2DBA2CB265FD16E0000E363 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DBA2CA265FD16E0000E363 /* Weather.swift */; };
+		A2F2773D265F1FC800ECDC1C /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F2773C265F1FC800ECDC1C /* WeatherModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +53,9 @@
 		A2D8438B265C8089003A9606 /* iOSTrainingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSTrainingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2D8438F265C8089003A9606 /* iOSTrainingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSTrainingUITests.swift; sourceTree = "<group>"; };
 		A2D84391265C8089003A9606 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2DBA2C7265FD1070000E363 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		A2DBA2CA265FD16E0000E363 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		A2F2773C265F1FC800ECDC1C /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +116,9 @@
 		A2D8436C265C8086003A9606 /* iOSTraining */ = {
 			isa = PBXGroup;
 			children = (
+				A2DBA2C9265FD15C0000E363 /* Common */,
+				A2DBA2C6265FD0F10000E363 /* Extensions */,
+				A2F2773B265F1FA500ECDC1C /* Models */,
 				A253F3DE265DCF9300D56194 /* Views */,
 				A2D8436D265C8086003A9606 /* AppDelegate.swift */,
 				A2D8436F265C8086003A9606 /* SceneDelegate.swift */,
@@ -136,6 +145,30 @@
 				A2D84391265C8089003A9606 /* Info.plist */,
 			);
 			path = iOSTrainingUITests;
+			sourceTree = "<group>";
+		};
+		A2DBA2C6265FD0F10000E363 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A2DBA2C7265FD1070000E363 /* Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A2DBA2C9265FD15C0000E363 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A2DBA2CA265FD16E0000E363 /* Weather.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		A2F2773B265F1FA500ECDC1C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A2F2773C265F1FC800ECDC1C /* WeatherModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,6 +309,9 @@
 			files = (
 				A253F3E1265DCFD000D56194 /* WeatherViewController.swift in Sources */,
 				A2D8436E265C8086003A9606 /* AppDelegate.swift in Sources */,
+				A2F2773D265F1FC800ECDC1C /* WeatherModel.swift in Sources */,
+				A2DBA2C8265FD1070000E363 /* Extension.swift in Sources */,
+				A2DBA2CB265FD16E0000E363 /* Weather.swift in Sources */,
 				A2D84370265C8086003A9606 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

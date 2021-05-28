@@ -22,7 +22,8 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Cache Swift Package
+        uses: actions/checkout@v2
         with:
           path: SourcePackages
           key: ${{ runner.os }}-spm-${{ hashFiles('*.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
@@ -33,7 +34,8 @@ jobs:
 
       - name: Build
         run: xcodebuild build
-            -scheme iOSTraining 
-            -sdk iphonesimulator 
-            -configuration Debug 
-            -clonedSourcePackagesDirPath SourcePackages
+          -scheme iOSTraining
+          -sdk iphonesimulator
+          -configuration Debug
+          -clonedSourcePackagesDirPath SourcePackages
+          -destination "platform=iOS Simulator,name=IPhone 12"

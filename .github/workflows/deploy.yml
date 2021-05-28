@@ -27,5 +27,5 @@ jobs:
       - name: Xcode version
         run: xcodebuild -version
 
-      - name: Xcode Build
-        run: xcodebuild -sdk iphonesimulator -configuration Debug build
+      - name: Build
+        run: xcodebuild -scheme iOSTraining -sdk iphonesimulator -configuration Debug build

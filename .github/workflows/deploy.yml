@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: Cache Swift Package
-        uses: actions/checkout@v2
+        uses: actions/checkout@v1
         with:
           path: SourcePackages
           key: ${{ runner.os }}-spm-${{ hashFiles('*.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}

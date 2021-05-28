@@ -23,6 +23,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          path: SourcePackages
+          key: ${{ runner.os }}-spm-${{ hashFiles('*.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
+          restore-keys: ${{ runner.os }}-spm-
 
       - name: Xcode version
         run: xcodebuild -version

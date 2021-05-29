@@ -21,6 +21,7 @@ extension UIImageView {
         case Weahter.rainy.rawValue:
             imageColor = .blue
         default:
+            imageColor = .clear
             break
         }
         self.image = UIImage(named: "icon_\(weather)")?.withRenderingMode(.alwaysTemplate)

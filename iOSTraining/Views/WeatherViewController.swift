@@ -20,8 +20,13 @@ class WeatherViewController: UIViewController {
     }
     
     @IBAction private func onClickReloadButton(_ sender: Any) {
-        let weather = WeatherModel.fetchWeather()
-        self.weatherImageView.set(weather: weather)
+        let weather = WeatherModel.fetcheWeather(at: Const.Place.tokyo)
+        if let weather = weather {
+            self.weatherImageView.set(weather: weather)
+        } else {
+            let content = AlertContent(title: Const.Alert.title, message: Const.Alert.message, action: UIAlertAction(title: Const.Alert.button_title, style: .default, handler: nil))
+            AlertUtil.present(vc: self, content: content)
+        }
     }
     
 }

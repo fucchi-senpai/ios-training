@@ -14,7 +14,7 @@ class WeatherModel {
     /// - Returns: sunny, cloudy or rainy
     public static func fetchWeather() -> String {
         let weather = YumemiWeather.fetchWeather()
-        print(weather)
+        Logging.log(message: weather)
         return weather
     }
     
@@ -25,10 +25,10 @@ class WeatherModel {
     public static func fetcheWeather(at: String) -> String? {
         do {
             let weather = try YumemiWeather.fetchWeather(at: at)
-            print("Fetch Success: weather \(weather) at \(at)")
+            Logging.log(message: "Fetch Success: weather \(weather) at \(at)")
             return weather
         } catch {
-            print("Error: \(error)")
+            Logging.log(message: "Error: \(error)")
             return nil
         }
     }

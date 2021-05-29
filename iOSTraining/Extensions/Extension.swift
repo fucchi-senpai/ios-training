@@ -14,11 +14,11 @@ extension UIImageView {
     func set(weather: String) {
         var imageColor = UIColor()
         switch weather {
-        case Weahter.sunny.rawValue:
+        case Weather.sunny.rawValue:
             imageColor = .red
-        case Weahter.cloudy.rawValue:
+        case Weather.cloudy.rawValue:
             imageColor = .gray
-        case Weahter.rainy.rawValue:
+        case Weather.rainy.rawValue:
             imageColor = .blue
         default:
             imageColor = .clear

@@ -16,7 +16,7 @@ class WeatherViewController: UIViewController {
     }
     
     private func initView() {
-        self.weatherImageView.set(weather: Weahter.sunny.rawValue)
+        self.weatherImageView.set(weather: Weather.sunny.rawValue)
     }
     
     @IBAction private func onClickReloadButton(_ sender: Any) {

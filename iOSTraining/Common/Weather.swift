@@ -6,7 +6,7 @@
 //
 
 /// 表示する天候パターン
-enum Weahter: String {
+enum Weather: String {
     case sunny = "sunny"
     case cloudy = "cloudy"
     case rainy = "rainy"

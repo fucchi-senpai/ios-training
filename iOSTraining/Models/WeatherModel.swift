@@ -32,4 +32,13 @@ class WeatherModel {
             return nil
         }
     }
+    
+    /// ランダムで天候のJson文字列を返却する
+    /// - Parameter jsonString: リクエストパラメータ
+    /// - Returns: Json文字列
+    static func fetchWeather(_ jsonString: String) -> String? {
+        let json = try? YumemiWeather.fetchWeather(jsonString)
+        return json
+    }
+    
 }

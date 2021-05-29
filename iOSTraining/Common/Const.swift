@@ -16,4 +16,8 @@ struct Const {
     struct Place {
         static let tokyo = "tokyo"
     }
+    
+    struct Date {
+        static let yyyyMmDdTHhMmSsZZZZZ = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+    }
 }

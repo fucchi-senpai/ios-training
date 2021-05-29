@@ -5,7 +5,7 @@
 //  Created by Shota Fuchikami on 2021/05/29.
 //
 
-public struct Const {
+struct Const {
     
     struct Alert {
         static let title = "エラーが発生しました"

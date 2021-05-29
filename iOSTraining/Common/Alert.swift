@@ -12,7 +12,7 @@ struct AlertContent {
     var action: UIAlertAction
 }
 
-class AlertUtil {
+struct AlertUtil {
     /// AlertController 表示
     /// - Parameters:
     ///   - vc: ViewController

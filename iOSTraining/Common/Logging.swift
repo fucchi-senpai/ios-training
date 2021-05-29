@@ -6,7 +6,7 @@
 //
 import Foundation
 
-class Logging {
+struct Logging {
     /// デバッグ時ログ出力
     /// - Parameters:
     ///   - message: ログメッセージ

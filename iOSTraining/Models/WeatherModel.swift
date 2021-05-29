@@ -12,7 +12,7 @@ class WeatherModel {
     
     /// ランダムで天候の文字列を返却する
     /// - Returns: sunny, cloudy or rainy
-    public static func fetchWeather() -> String {
+    static func fetchWeather() -> String {
         let weather = YumemiWeather.fetchWeather()
         Logging.log(message: weather)
         return weather
@@ -22,7 +22,7 @@ class WeatherModel {
     /// エラーの場合 nil を返却する
     /// - Parameter at: where
     /// - Returns: sunny, cloudy rainy or nil
-    public static func fetcheWeather(at: String) -> String? {
+    static func fetcheWeather(at: String) -> String? {
         do {
             let weather = try YumemiWeather.fetchWeather(at: at)
             Logging.log(message: "Fetch Success: weather \(weather) at \(at)")

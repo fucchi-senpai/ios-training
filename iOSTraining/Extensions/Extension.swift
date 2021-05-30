@@ -29,3 +29,12 @@ extension UIImageView {
         self.backgroundColor = .none
     }
 }
+
+extension UILabel {
+    /// 気温のテキストとフォントを設定する
+    /// - Parameter temp: 気温
+    func set(temp: Int) {
+        self.text = String(temp)
+        self.font = .italicSystemFont(ofSize: CGFloat(Const.Label.temp_font_size))
+    }
+}

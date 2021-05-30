@@ -9,6 +9,8 @@ import UIKit
 
 class WeatherViewController: UIViewController {
     @IBOutlet weak var weatherImageView: UIImageView!
+    @IBOutlet weak var minTempLabel: UILabel!
+    @IBOutlet weak var maxTempLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,8 @@ class WeatherViewController: UIViewController {
         case .success:
             guard let data = weatherData.data else { return }
             self.weatherImageView.set(weather: data.weather)
+            self.minTempLabel.set(temp: data.minTemp)
+            self.maxTempLabel.set(temp: data.maxTemp)
         case .failure, .notRequest:
             let content = AlertContent(title: Const.Alert.title, message: Const.Alert.message, action: UIAlertAction(title: Const.Alert.button_title, style: .default, handler: nil))
             AlertUtil.present(vc: self, content: content)

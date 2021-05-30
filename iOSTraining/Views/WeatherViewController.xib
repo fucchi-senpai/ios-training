@@ -65,6 +65,9 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o85-lz-Fgb" userLabel="Close Button">
                             <rect key="frame" x="0.0" y="0.0" width="103.33333333333333" height="30"/>
                             <state key="normal" title="Close"/>
+                            <connections>
+                                <action selector="onClickCloseButton:" destination="-1" eventType="touchUpInside" id="CXp-is-vmu"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QQV-b3-VcA" userLabel="Reload Button">
                             <rect key="frame" x="103.33333333333331" y="0.0" width="103.66666666666669" height="30"/>

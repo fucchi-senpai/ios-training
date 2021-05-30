@@ -22,6 +22,7 @@ struct Const {
     }
     
     struct Label {
+        static let invalid_text = "--"
         static let temp_font_size = 24.0
     }
 }

@@ -14,11 +14,27 @@ class WeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        Logging.log(message: "start viewDidLoad")
+        initView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        Logging.log(message: "start viewDidAppear")
         loadWeather()
     }
     
     @IBAction private func onClickReloadButton(_ sender: Any) {
         loadWeather()
+    }
+    
+    @IBAction private func onClickCloseButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    private func initView() {
+        weatherImageView.backgroundColor = .clear
+        minTempLabel.font = UIFont.systemFont(ofSize: CGFloat(Const.Label.temp_font_size))
+        maxTempLabel.font = UIFont.systemFont(ofSize: CGFloat(Const.Label.temp_font_size))
     }
     
     private func loadWeather() {

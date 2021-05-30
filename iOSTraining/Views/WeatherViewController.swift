@@ -20,13 +20,16 @@ class WeatherViewController: UIViewController {
     }
     
     @IBAction private func onClickReloadButton(_ sender: Any) {
-        let date = DateUtil.formatDate(format: Const.Date.yyyyMmDdTHhMmSsZZZZZ)
-        guard let request = JsonUtil.jsonEncode(param: Parameter(area: Const.Place.tokyo, date: date)) else { return }
-        if let response = WeatherModel.fetchWeather(request) {
-            guard let weatherData = JsonUtil.jsonDecode(jsonString: response) else { return }
-            Logging.log(message: "Response: \(weatherData)")
-            self.weatherImageView.set(weather: weatherData.weather)
-        } else {
+        let parameter = Parameter(area: Const.Place.tokyo, date: DateUtil.formatDate(format: Const.Date.yyyyMmDdTHhMmSsZZZZZ))
+        guard let request = JsonUtil.jsonEncode(param: parameter) else { return }
+        
+        let weatherData = WeatherModel.fetchWeather(request)
+        
+        switch weatherData.responseStatus {
+        case .success:
+            guard let data = weatherData.data else { return }
+            self.weatherImageView.set(weather: data.weather)
+        case .failure, .notRequest:
             let content = AlertContent(title: Const.Alert.title, message: Const.Alert.message, action: UIAlertAction(title: Const.Alert.button_title, style: .default, handler: nil))
             AlertUtil.present(vc: self, content: content)
         }

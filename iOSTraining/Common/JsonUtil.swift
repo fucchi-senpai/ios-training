@@ -24,10 +24,10 @@ struct JsonUtil {
     /// Jsonデコード
     /// - Parameter jsonString: Json文字列
     /// - Returns: WeatherData
-    static func jsonDecode(jsonString: String) -> WeatherData? {
+    static func jsonDecode(jsonString: String) -> Result.WeatherData? {
         do {
             guard let data = jsonString.data(using: .utf8) else { return nil }
-            let decodedData = try JSONDecoder().decode(WeatherData.self, from: data)
+            let decodedData = try JSONDecoder().decode(Result.WeatherData.self, from: data)
             return decodedData
         } catch {
             Logging.log(message: "Error: \(error)")

@@ -14,11 +14,11 @@ extension UIImageView {
     func set(weather: String) {
         var imageColor = UIColor()
         switch weather {
-        case Weahter.sunny.rawValue:
+        case Weather.sunny.rawValue:
             imageColor = .red
-        case Weahter.cloudy.rawValue:
+        case Weather.cloudy.rawValue:
             imageColor = .gray
-        case Weahter.rainy.rawValue:
+        case Weather.rainy.rawValue:
             imageColor = .blue
         default:
             imageColor = .clear
@@ -26,6 +26,15 @@ extension UIImageView {
         }
         self.image = UIImage(named: "icon_\(weather)")?.withRenderingMode(.alwaysTemplate)
         self.tintColor = imageColor
-        self.backgroundColor = .none
+        self.backgroundColor = .clear
+    }
+}
+
+extension UILabel {
+    /// 気温のテキストとフォントを設定する
+    /// - Parameter temp: 気温
+    func set(temp: Int) {
+        self.text = String(temp)
+        self.font = .italicSystemFont(ofSize: CGFloat(Const.Label.temp_font_size))
     }
 }

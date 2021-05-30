@@ -16,4 +16,12 @@ struct Const {
     struct Place {
         static let tokyo = "tokyo"
     }
+    
+    struct Date {
+        static let yyyyMmDdTHhMmSsZZZZZ = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+    }
+    
+    struct Label {
+        static let temp_font_size = 24.0
+    }
 }

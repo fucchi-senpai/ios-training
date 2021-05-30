@@ -40,8 +40,8 @@ class WeatherModel {
         do {
             let json = try YumemiWeather.fetchWeather(jsonString)
             Logging.log(message: "Fetch Success: json \(json)")
-            let responseData = JsonUtil.jsonDecode(jsonString: json)
-            guard let responseData = responseData else { return Result(data: nil, responseStatus: .failure) }
+            let decodedData = JsonUtil.jsonDecode(jsonString: json)
+            guard let responseData = decodedData else { return Result(data: nil, responseStatus: .failure) }
             return Result(data: responseData, responseStatus: .success)
         } catch {
             Logging.log(message: "Error: \(error)")

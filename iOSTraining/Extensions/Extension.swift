@@ -26,7 +26,7 @@ extension UIImageView {
         }
         self.image = UIImage(named: "icon_\(weather)")?.withRenderingMode(.alwaysTemplate)
         self.tintColor = imageColor
-        self.backgroundColor = .none
+        self.backgroundColor = .clear
     }
 }
 

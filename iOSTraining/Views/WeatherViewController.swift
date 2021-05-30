@@ -30,9 +30,11 @@ class WeatherViewController: UIViewController {
         switch result.responseStatus {
         case .success:
             guard let weatherData = result.data else { return }
-            self.weatherImageView.set(weather: weatherData.weather)
-            self.minTempLabel.set(temp: weatherData.minTemp)
-            self.maxTempLabel.set(temp: weatherData.maxTemp)
+            DispatchQueue.main.async {
+                self.weatherImageView.set(weather: weatherData.weather)
+                self.minTempLabel.set(temp: weatherData.minTemp)
+                self.maxTempLabel.set(temp: weatherData.maxTemp)
+            }
         case .failure, .notRequest:
             let content = AlertContent(title: Const.Alert.title, message: Const.Alert.message, action: UIAlertAction(title: Const.Alert.button_title, style: .default, handler: nil))
             AlertUtil.present(vc: self, content: content)

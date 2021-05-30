@@ -35,7 +35,7 @@ class WeatherModel {
     
     /// ランダムで天候のJson文字列を返却する
     /// - Parameter jsonString: リクエストパラメータ文字列
-    /// - Returns:
+    /// - Returns: レスポンスデータとステータス（成功 or 失敗）
     static func fetchWeather(_ jsonString: String) -> Result {
         do {
             let json = try YumemiWeather.fetchWeather(jsonString)

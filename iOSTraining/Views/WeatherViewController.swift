@@ -16,7 +16,9 @@ class WeatherViewController: UIViewController {
         super.viewDidLoad()
         Logging.log(message: "start viewDidLoad")
         initView()
-        loadWeather()
+        NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: nil, using: { _ in
+            self.loadWeather()
+        })
     }
     
     @IBAction private func onClickReloadButton(_ sender: Any) {

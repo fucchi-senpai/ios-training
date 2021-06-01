@@ -12,6 +12,17 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var minTempLabel: UILabel!
     @IBOutlet weak var maxTempLabel: UILabel!
     
+    private let weatherModel: WeatherModel
+    
+    init(weatherModel: WeatherModel) {
+        self.weatherModel = weatherModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         Logging.log(message: "start viewDidLoad")
@@ -41,7 +52,7 @@ class WeatherViewController: UIViewController {
         let parameter = Parameter(area: Const.Place.tokyo, date: DateUtil.formatDate(format: Const.Date.yyyyMmDdTHhMmSsZZZZZ))
         guard let request = JsonUtil.jsonEncode(param: parameter) else { return }
         
-        let result = WeatherModel.fetchWeather(request)
+        let result = weatherModel.fetchWeather(request)
         
         DispatchQueue.main.async {
             switch result.responseStatus {

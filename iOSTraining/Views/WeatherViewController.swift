@@ -12,6 +12,17 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var minTempLabel: UILabel!
     @IBOutlet weak var maxTempLabel: UILabel!
     
+    private let weatherModel: WeatherModelProtocol
+    
+    init(weatherModel: WeatherModelProtocol) {
+        self.weatherModel = weatherModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         Logging.log(message: "start viewDidLoad")
@@ -29,19 +40,11 @@ class WeatherViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    private func initView() {
-        weatherImageView.backgroundColor = .clear
-        minTempLabel.text = Const.Label.invalid_text
-        minTempLabel.font = UIFont.systemFont(ofSize: CGFloat(Const.Label.temp_font_size))
-        maxTempLabel.text = Const.Label.invalid_text
-        maxTempLabel.font = UIFont.systemFont(ofSize: CGFloat(Const.Label.temp_font_size))
-    }
-    
-    private func loadWeather() {
+    func loadWeather() {
         let parameter = Parameter(area: Const.Place.tokyo, date: DateUtil.formatDate(format: Const.Date.yyyyMmDdTHhMmSsZZZZZ))
         guard let request = JsonUtil.jsonEncode(param: parameter) else { return }
         
-        let result = WeatherModel.fetchWeather(request)
+        let result = weatherModel.fetchWeather(request)
         
         DispatchQueue.main.async {
             switch result.responseStatus {
@@ -55,6 +58,17 @@ class WeatherViewController: UIViewController {
                 AlertUtil.present(vc: self, content: content)
             }
         }
+    }
+        
+    private func initView() {
+        weatherImageView.backgroundColor = .clear
+        weatherImageView.accessibilityIdentifier = "weatherImageView"
+        minTempLabel.text = Const.Label.invalid_text
+        minTempLabel.font = UIFont.systemFont(ofSize: CGFloat(Const.Label.temp_font_size))
+        minTempLabel.accessibilityIdentifier = "minTempLabel"
+        maxTempLabel.text = Const.Label.invalid_text
+        maxTempLabel.font = UIFont.systemFont(ofSize: CGFloat(Const.Label.temp_font_size))
+        maxTempLabel.accessibilityIdentifier = "maxTempLabel"
     }
     
 }

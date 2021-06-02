@@ -88,7 +88,7 @@ class WeatherViewControllerTests: XCTestCase {
     }
     
     private func setTimeout(with: Double, closure: @escaping () -> Void) {
-        let expectation = expectation(description: "Weather View Test")
+        let expectation = XCTestExpectation(description: "Weather View Test")
         DispatchQueue.main.async {
             closure()
             // 非同期処理完了

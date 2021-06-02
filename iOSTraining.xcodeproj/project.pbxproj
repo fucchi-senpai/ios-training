@@ -19,8 +19,8 @@
 		A2D84370265C8086003A9606 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D8436F265C8086003A9606 /* SceneDelegate.swift */; };
 		A2D84377265C8089003A9606 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2D84376265C8089003A9606 /* Assets.xcassets */; };
 		A2D8437A265C8089003A9606 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2D84378265C8089003A9606 /* LaunchScreen.storyboard */; };
-		A2D84385265C8089003A9606 /* iOSTrainingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D84384265C8089003A9606 /* iOSTrainingTests.swift */; };
-		A2D84390265C8089003A9606 /* iOSTrainingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D8438F265C8089003A9606 /* iOSTrainingUITests.swift */; };
+		A2D84385265C8089003A9606 /* WeatherViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D84384265C8089003A9606 /* WeatherViewControllerTests.swift */; };
+		A2D84390265C8089003A9606 /* WeatherViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D8438F265C8089003A9606 /* WeatherViewControllerUITests.swift */; };
 		A2D8439F265C814B003A9606 /* YumemiWeather in Frameworks */ = {isa = PBXBuildFile; productRef = A2D8439E265C814B003A9606 /* YumemiWeather */; };
 		A2DBA2C8265FD1070000E363 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DBA2C7265FD1070000E363 /* Extension.swift */; };
 		A2DBA2CB265FD16E0000E363 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DBA2CA265FD16E0000E363 /* Weather.swift */; };
@@ -62,10 +62,10 @@
 		A2D84379265C8089003A9606 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A2D8437B265C8089003A9606 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2D84380265C8089003A9606 /* iOSTrainingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSTrainingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A2D84384265C8089003A9606 /* iOSTrainingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSTrainingTests.swift; sourceTree = "<group>"; };
+		A2D84384265C8089003A9606 /* WeatherViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewControllerTests.swift; sourceTree = "<group>"; };
 		A2D84386265C8089003A9606 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2D8438B265C8089003A9606 /* iOSTrainingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSTrainingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A2D8438F265C8089003A9606 /* iOSTrainingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSTrainingUITests.swift; sourceTree = "<group>"; };
+		A2D8438F265C8089003A9606 /* WeatherViewControllerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewControllerUITests.swift; sourceTree = "<group>"; };
 		A2D84391265C8089003A9606 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2DBA2C7265FD1070000E363 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		A2DBA2CA265FD16E0000E363 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 		A2D84383265C8089003A9606 /* iOSTrainingTests */ = {
 			isa = PBXGroup;
 			children = (
-				A2D84384265C8089003A9606 /* iOSTrainingTests.swift */,
+				A2D84384265C8089003A9606 /* WeatherViewControllerTests.swift */,
 				A2D84386265C8089003A9606 /* Info.plist */,
 			);
 			path = iOSTrainingTests;
@@ -159,7 +159,7 @@
 		A2D8438E265C8089003A9606 /* iOSTrainingUITests */ = {
 			isa = PBXGroup;
 			children = (
-				A2D8438F265C8089003A9606 /* iOSTrainingUITests.swift */,
+				A2D8438F265C8089003A9606 /* WeatherViewControllerUITests.swift */,
 				A2D84391265C8089003A9606 /* Info.plist */,
 			);
 			path = iOSTrainingUITests;
@@ -352,7 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2D84385265C8089003A9606 /* iOSTrainingTests.swift in Sources */,
+				A2D84385265C8089003A9606 /* WeatherViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,7 +360,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2D84390265C8089003A9606 /* iOSTrainingUITests.swift in Sources */,
+				A2D84390265C8089003A9606 /* WeatherViewControllerUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

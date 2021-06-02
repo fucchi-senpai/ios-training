@@ -12,9 +12,9 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var minTempLabel: UILabel!
     @IBOutlet weak var maxTempLabel: UILabel!
     
-    private let weatherModel: WeatherModel
+    private let weatherModel: WeatherModelProtocol
     
-    init(weatherModel: WeatherModel) {
+    init(weatherModel: WeatherModelProtocol) {
         self.weatherModel = weatherModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -40,15 +40,7 @@ class WeatherViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    private func initView() {
-        weatherImageView.backgroundColor = .clear
-        minTempLabel.text = Const.Label.invalid_text
-        minTempLabel.font = UIFont.systemFont(ofSize: CGFloat(Const.Label.temp_font_size))
-        maxTempLabel.text = Const.Label.invalid_text
-        maxTempLabel.font = UIFont.systemFont(ofSize: CGFloat(Const.Label.temp_font_size))
-    }
-    
-    private func loadWeather() {
+    func loadWeather() {
         let parameter = Parameter(area: Const.Place.tokyo, date: DateUtil.formatDate(format: Const.Date.yyyyMmDdTHhMmSsZZZZZ))
         guard let request = JsonUtil.jsonEncode(param: parameter) else { return }
         
@@ -66,6 +58,17 @@ class WeatherViewController: UIViewController {
                 AlertUtil.present(vc: self, content: content)
             }
         }
+    }
+        
+    private func initView() {
+        weatherImageView.backgroundColor = .clear
+        weatherImageView.accessibilityIdentifier = "weatherImageView"
+        minTempLabel.text = Const.Label.invalid_text
+        minTempLabel.font = UIFont.systemFont(ofSize: CGFloat(Const.Label.temp_font_size))
+        minTempLabel.accessibilityIdentifier = "minTempLabel"
+        maxTempLabel.text = Const.Label.invalid_text
+        maxTempLabel.font = UIFont.systemFont(ofSize: CGFloat(Const.Label.temp_font_size))
+        maxTempLabel.accessibilityIdentifier = "maxTempLabel"
     }
     
 }

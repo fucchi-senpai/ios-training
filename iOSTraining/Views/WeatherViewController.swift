@@ -11,6 +11,7 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var minTempLabel: UILabel!
     @IBOutlet weak var maxTempLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private let weatherModel: WeatherModelProtocol
     
@@ -40,25 +41,21 @@ class WeatherViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    /// 天候情報のロード処理
     func loadWeather() {
-        let parameter = Parameter(area: Const.Place.tokyo, date: DateUtil.formatDate(format: Const.Date.yyyyMmDdTHhMmSsZZZZZ))
-        guard let request = JsonUtil.jsonEncode(param: parameter) else { return }
+        self.activityIndicator.startAnimating()
         
-        let result = weatherModel.fetchWeather(request)
-        
-        DispatchQueue.main.async {
-            switch result.responseStatus {
-            case .success:
-                guard let weatherData = result.data else { return }
-                self.weatherImageView.set(weather: weatherData.weather)
-                self.minTempLabel.set(temp: weatherData.minTemp)
-                self.maxTempLabel.set(temp: weatherData.maxTemp)
-            case .failure, .notRequest:
-                let content = AlertContent(title: Const.Alert.title, message: Const.Alert.message, action: UIAlertAction(title: Const.Alert.button_title, style: .default, handler: nil))
-                AlertUtil.present(vc: self, content: content)
+        DispatchQueue.global(qos: .userInitiated).async {
+            let parameter = Parameter(area: Const.Place.tokyo, date: DateUtil.formatDate(format: Const.Date.yyyyMmDdTHhMmSsZZZZZ))
+            guard let jsonString = JsonUtil.jsonEncode(param: parameter) else { return }
+            self.weatherModel.fetchWeather(jsonString) { result in
+                DispatchQueue.main.async {
+                    self.refreshWeatherView(result)
+                }
             }
         }
     }
+    
         
     private func initView() {
         weatherImageView.backgroundColor = .clear
@@ -69,6 +66,24 @@ class WeatherViewController: UIViewController {
         maxTempLabel.text = Const.Label.invalid_text
         maxTempLabel.font = UIFont.systemFont(ofSize: CGFloat(Const.Label.temp_font_size))
         maxTempLabel.accessibilityIdentifier = "maxTempLabel"
+        activityIndicator.style = .gray
+        activityIndicator.color = .gray
+        activityIndicator.hidesWhenStopped = true
+    }
+    
+    private func refreshWeatherView(_ result: Result) {
+        Logging.log(message: #function)
+        switch result.responseStatus {
+        case .success:
+            guard let weatherData = result.data else { return }
+            self.weatherImageView.set(weather: weatherData.weather)
+            self.minTempLabel.set(temp: weatherData.minTemp)
+            self.maxTempLabel.set(temp: weatherData.maxTemp)
+        case .failure, .notRequest:
+            let content = AlertContent(title: Const.Alert.title, message: Const.Alert.message, action: UIAlertAction(title: Const.Alert.button_title, style: .default, handler: nil))
+            AlertUtil.present(vc: self, content: content)
+        }
+        self.activityIndicator.stopAnimating()
     }
     
 }

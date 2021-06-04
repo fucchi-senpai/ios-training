@@ -25,7 +25,7 @@ class WeatherViewControllerTests: XCTestCase {
                 let vc = WeatherViewController(weatherModel: model)
                 vc.view.layoutIfNeeded()
                 vc.loadWeather()
-                self.setTimeout(with: 0.5) {
+                DispatchQueue.main.async {
                     let expected = UIImage(named: "icon_sunny")?.withRenderingMode(.alwaysTemplate)
                     let actual = vc.weatherImageView.image
                     XCTAssertEqual(expected, actual)
@@ -37,7 +37,7 @@ class WeatherViewControllerTests: XCTestCase {
                 let vc = WeatherViewController(weatherModel: model)
                 vc.view.layoutIfNeeded()
                 vc.loadWeather()
-                self.setTimeout(with: 0.5) {
+                DispatchQueue.main.async {
                     let expected = UIImage(named: "icon_cloudy")?.withRenderingMode(.alwaysTemplate)
                     let actual = vc.weatherImageView.image
                     XCTAssertEqual(expected, actual)
@@ -49,7 +49,7 @@ class WeatherViewControllerTests: XCTestCase {
                 let vc = WeatherViewController(weatherModel: model)
                 vc.view.layoutIfNeeded()
                 vc.loadWeather()
-                self.setTimeout(with: 0.5) {
+                DispatchQueue.main.async {
                     let expected = UIImage(named: "icon_rainy")?.withRenderingMode(.alwaysTemplate)
                     let actual = vc.weatherImageView.image
                     XCTAssertEqual(expected, actual)
@@ -67,7 +67,7 @@ class WeatherViewControllerTests: XCTestCase {
             XCTContext.runActivity(named: "最高気温が表示と一致するかどうか", block: { _ in
                 vc.view.layoutIfNeeded()
                 vc.loadWeather()
-                self.setTimeout(with: 0.5) {
+                DispatchQueue.main.async {
                     let expected = "20"
                     let actual = vc.maxTempLabel.text
                     XCTAssertEqual(expected, actual)
@@ -77,7 +77,7 @@ class WeatherViewControllerTests: XCTestCase {
             XCTContext.runActivity(named: "最低気温が表示と一致するかどうか", block: { _ in
                 vc.view.layoutIfNeeded()
                 vc.loadWeather()
-                self.setTimeout(with: 0.5) {
+                DispatchQueue.main.async {
                     let expected = "-5"
                     let actual = vc.minTempLabel.text
                     XCTAssertEqual(expected, actual)
@@ -86,41 +86,35 @@ class WeatherViewControllerTests: XCTestCase {
 
         })
     }
-    
-    private func setTimeout(with: Double, closure: @escaping () -> Void) {
-        let expectation = XCTestExpectation(description: "Weather View Test")
-        DispatchQueue.main.async {
-            closure()
-            // 非同期処理完了
-            expectation.fulfill()
-        }
-        XCTWaiter().wait(for: [expectation], timeout: with)
-    }
 
 }
 
 // MARK: ユニットテスト用モックデータ
 
 final class WeatherModelSunnyTest: WeatherModelProtocol {
-    func fetchWeather(_ jsonString: String) -> Result {
-        return Result(data: Result.WeatherData(weather: Weather.sunny.rawValue, maxTemp: 0, minTemp: 0, date: ""), responseStatus: .success)
+    func fetchWeather(_ jsonString: String, closure: @escaping (Result) -> Void) {
+        let result = Result(data: Result.WeatherData(weather: Weather.sunny.rawValue, maxTemp: 0, minTemp: 0, date: ""), responseStatus: .success)
+        closure(result)
     }
 }
 
 final class WeatherModelCloudyTest: WeatherModelProtocol {
-    func fetchWeather(_ jsonString: String) -> Result {
-        return Result(data: Result.WeatherData(weather: Weather.cloudy.rawValue, maxTemp: 0, minTemp: 0, date: ""), responseStatus: .success)
+    func fetchWeather(_ jsonString: String, closure: @escaping (Result) -> Void) {
+        let result = Result(data: Result.WeatherData(weather: Weather.cloudy.rawValue, maxTemp: 0, minTemp: 0, date: ""), responseStatus: .success)
+        closure(result)
     }
 }
 
 final class WeatherModelRainyTest: WeatherModelProtocol {
-    func fetchWeather(_ jsonString: String) -> Result {
-        return Result(data: Result.WeatherData(weather: Weather.rainy.rawValue, maxTemp: 0, minTemp: 0, date: ""), responseStatus: .success)
+    func fetchWeather(_ jsonString: String, closure: @escaping (Result) -> Void) {
+        let result = Result(data: Result.WeatherData(weather: Weather.rainy.rawValue, maxTemp: 0, minTemp: 0, date: ""), responseStatus: .success)
+        closure(result)
     }
 }
 
 final class WeatherModelTempLabelTest: WeatherModelProtocol {
-    func fetchWeather(_ jsonString: String) -> Result {
-        return Result(data: Result.WeatherData(weather: Weather.sunny.rawValue, maxTemp: 20, minTemp: -5, date: ""), responseStatus: .success)
+    func fetchWeather(_ jsonString: String, closure: @escaping (Result) -> Void) {
+        let result = Result(data: Result.WeatherData(weather: Weather.sunny.rawValue, maxTemp: 20, minTemp: -5, date: ""), responseStatus: .success)
+        closure(result)
     }
 }

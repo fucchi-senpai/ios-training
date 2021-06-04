@@ -102,25 +102,25 @@ class WeatherViewControllerTests: XCTestCase {
 // MARK: ユニットテスト用モックデータ
 
 final class WeatherModelSunnyTest: WeatherModelProtocol {
-    func fetchWeather(_ jsonString: String) -> Result {
-        return Result(data: Result.WeatherData(weather: Weather.sunny.rawValue, maxTemp: 0, minTemp: 0, date: ""), responseStatus: .success)
+    func fetchWeather(_ jsonString: String, closure: @escaping (Result) -> Void) {
+        closure(Result(data: Result.WeatherData(weather: Weather.sunny.rawValue, maxTemp: 0, minTemp: 0, date: ""), responseStatus: .success))
     }
 }
 
 final class WeatherModelCloudyTest: WeatherModelProtocol {
-    func fetchWeather(_ jsonString: String) -> Result {
-        return Result(data: Result.WeatherData(weather: Weather.cloudy.rawValue, maxTemp: 0, minTemp: 0, date: ""), responseStatus: .success)
+    func fetchWeather(_ jsonString: String, closure: @escaping (Result) -> Void) {
+        closure(Result(data: Result.WeatherData(weather: Weather.cloudy.rawValue, maxTemp: 0, minTemp: 0, date: ""), responseStatus: .success))
     }
 }
 
 final class WeatherModelRainyTest: WeatherModelProtocol {
-    func fetchWeather(_ jsonString: String) -> Result {
-        return Result(data: Result.WeatherData(weather: Weather.rainy.rawValue, maxTemp: 0, minTemp: 0, date: ""), responseStatus: .success)
+    func fetchWeather(_ jsonString: String, closure: @escaping (Result) -> Void) {
+        closure(Result(data: Result.WeatherData(weather: Weather.rainy.rawValue, maxTemp: 0, minTemp: 0, date: ""), responseStatus: .success))
     }
 }
 
 final class WeatherModelTempLabelTest: WeatherModelProtocol {
-    func fetchWeather(_ jsonString: String) -> Result {
-        return Result(data: Result.WeatherData(weather: Weather.sunny.rawValue, maxTemp: 20, minTemp: -5, date: ""), responseStatus: .success)
+    func fetchWeather(_ jsonString: String, closure: @escaping (Result) -> Void) {
+        closure(Result(data: Result.WeatherData(weather: Weather.sunny.rawValue, maxTemp: 20, minTemp: -5, date: ""), responseStatus: .success))
     }
 }

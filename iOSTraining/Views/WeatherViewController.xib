@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WeatherViewController" customModule="iOSTraining" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="Kjy-e2-UUN" id="jtl-8d-93D"/>
                 <outlet property="maxTempLabel" destination="gHV-Ks-s7u" id="SDS-E9-5pr"/>
                 <outlet property="minTempLabel" destination="po1-NK-mgu" id="z6X-Ma-5Iq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -78,6 +79,9 @@
                         </button>
                     </subviews>
                 </stackView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Kjy-e2-UUN">
+                    <rect key="frame" x="197" y="591.66666666666663" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -85,11 +89,13 @@
                 <constraint firstItem="QQV-b3-VcA" firstAttribute="centerX" secondItem="gHV-Ks-s7u" secondAttribute="centerX" id="Etu-Zu-u3r"/>
                 <constraint firstItem="tCi-3f-IAg" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="NMk-Mc-HL8"/>
                 <constraint firstItem="o85-lz-Fgb" firstAttribute="centerX" secondItem="po1-NK-mgu" secondAttribute="centerX" id="Nsz-e1-v2Q"/>
+                <constraint firstItem="Kjy-e2-UUN" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Pw6-pT-ct1"/>
                 <constraint firstItem="tCi-3f-IAg" firstAttribute="width" secondItem="ncj-IE-Qdb" secondAttribute="width" id="cSC-QY-mzC"/>
                 <constraint firstItem="ncj-IE-Qdb" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="eel-o5-DgA"/>
                 <constraint firstItem="ncj-IE-Qdb" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.5" id="jBo-vx-6eZ"/>
                 <constraint firstItem="tCi-3f-IAg" firstAttribute="top" secondItem="ncj-IE-Qdb" secondAttribute="bottom" constant="80" id="oxN-LW-lhl"/>
                 <constraint firstItem="ncj-IE-Qdb" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="t5A-JW-dI0"/>
+                <constraint firstItem="Kjy-e2-UUN" firstAttribute="top" secondItem="ncj-IE-Qdb" secondAttribute="bottom" constant="30" id="xiG-ST-93M"/>
             </constraints>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

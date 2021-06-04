@@ -23,14 +23,10 @@ class WeatherModel: WeatherModelProtocol {
         do {
             let json = try YumemiWeather.syncFetchWeather(jsonString)
             Logging.log(message: "Fetch Success: json \(json)")
-            let decodedData = JsonUtil.jsonDecode(jsonString: json)
-            if let responseData = decodedData {
-                let result = Result(data: responseData, responseStatus: .success)
-                closure(result)
-            } else {
-                let result = Result(data: nil, responseStatus: .failure)
-                closure(result)
-            }
+            let responseData = JsonUtil.jsonDecode(jsonString: json)
+            let status: ResponseStatus = responseData != nil ? .success : .failure
+            let result = Result(data: responseData, responseStatus: status)
+            closure(result)
         } catch {
             Logging.log(message: "Error: \(error)")
             let result = Result(data: nil, responseStatus: .failure)

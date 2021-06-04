@@ -103,24 +103,28 @@ class WeatherViewControllerTests: XCTestCase {
 
 final class WeatherModelSunnyTest: WeatherModelProtocol {
     func fetchWeather(_ jsonString: String, closure: @escaping (Result) -> Void) {
-        closure(Result(data: Result.WeatherData(weather: Weather.sunny.rawValue, maxTemp: 0, minTemp: 0, date: ""), responseStatus: .success))
+        let result = Result(data: Result.WeatherData(weather: Weather.sunny.rawValue, maxTemp: 0, minTemp: 0, date: ""), responseStatus: .success)
+        closure(result)
     }
 }
 
 final class WeatherModelCloudyTest: WeatherModelProtocol {
     func fetchWeather(_ jsonString: String, closure: @escaping (Result) -> Void) {
-        closure(Result(data: Result.WeatherData(weather: Weather.cloudy.rawValue, maxTemp: 0, minTemp: 0, date: ""), responseStatus: .success))
+        let result = Result(data: Result.WeatherData(weather: Weather.cloudy.rawValue, maxTemp: 0, minTemp: 0, date: ""), responseStatus: .success)
+        closure(result)
     }
 }
 
 final class WeatherModelRainyTest: WeatherModelProtocol {
     func fetchWeather(_ jsonString: String, closure: @escaping (Result) -> Void) {
-        closure(Result(data: Result.WeatherData(weather: Weather.rainy.rawValue, maxTemp: 0, minTemp: 0, date: ""), responseStatus: .success))
+        let result = Result(data: Result.WeatherData(weather: Weather.rainy.rawValue, maxTemp: 0, minTemp: 0, date: ""), responseStatus: .success)
+        closure(result)
     }
 }
 
 final class WeatherModelTempLabelTest: WeatherModelProtocol {
     func fetchWeather(_ jsonString: String, closure: @escaping (Result) -> Void) {
-        closure(Result(data: Result.WeatherData(weather: Weather.sunny.rawValue, maxTemp: 20, minTemp: -5, date: ""), responseStatus: .success))
+        let result = Result(data: Result.WeatherData(weather: Weather.sunny.rawValue, maxTemp: 20, minTemp: -5, date: ""), responseStatus: .success)
+        closure(result)
     }
 }

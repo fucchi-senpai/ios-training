@@ -92,12 +92,12 @@ extension WeatherViewController: WeatherViewDelegate {
         DispatchQueue.global(qos: .userInitiated).async {
             let parameter = Parameter(area: Const.Place.tokyo, date: DateUtil.formatDate(format: Const.Date.yyyyMmDdTHhMmSsZZZZZ))
             guard let jsonString = JsonUtil.jsonEncode(param: parameter) else { return }
-            self.weatherModel.fetchWeather(jsonString) { [weak self] result in
+            self.weatherModel.fetchWeather(jsonString, complete: { [weak self] result in
                 guard let self = self else { return }
                 DispatchQueue.main.async {
                     self.refreshWeatherView(result)
                 }
-            }
+            })
         }
     }
 }

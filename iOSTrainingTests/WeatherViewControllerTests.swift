@@ -24,7 +24,7 @@ class WeatherViewControllerTests: XCTestCase {
                 let model = WeatherModelSunnyTest()
                 let vc = WeatherViewController(weatherModel: model)
                 vc.view.layoutIfNeeded()
-                vc.loadWeather()
+                vc.delegate?.loadWeather()
                 DispatchQueue.main.async {
                     let expected = UIImage(named: "icon_sunny")?.withRenderingMode(.alwaysTemplate)
                     let actual = vc.weatherImageView.image
@@ -36,7 +36,7 @@ class WeatherViewControllerTests: XCTestCase {
                 let model = WeatherModelCloudyTest()
                 let vc = WeatherViewController(weatherModel: model)
                 vc.view.layoutIfNeeded()
-                vc.loadWeather()
+                vc.delegate?.loadWeather()
                 DispatchQueue.main.async {
                     let expected = UIImage(named: "icon_cloudy")?.withRenderingMode(.alwaysTemplate)
                     let actual = vc.weatherImageView.image
@@ -48,7 +48,7 @@ class WeatherViewControllerTests: XCTestCase {
                 let model = WeatherModelRainyTest()
                 let vc = WeatherViewController(weatherModel: model)
                 vc.view.layoutIfNeeded()
-                vc.loadWeather()
+                vc.delegate?.loadWeather()
                 DispatchQueue.main.async {
                     let expected = UIImage(named: "icon_rainy")?.withRenderingMode(.alwaysTemplate)
                     let actual = vc.weatherImageView.image
@@ -66,7 +66,7 @@ class WeatherViewControllerTests: XCTestCase {
             
             XCTContext.runActivity(named: "最高気温が表示と一致するかどうか", block: { _ in
                 vc.view.layoutIfNeeded()
-                vc.loadWeather()
+                vc.delegate?.loadWeather()
                 DispatchQueue.main.async {
                     let expected = "20"
                     let actual = vc.maxTempLabel.text
@@ -76,7 +76,7 @@ class WeatherViewControllerTests: XCTestCase {
             
             XCTContext.runActivity(named: "最低気温が表示と一致するかどうか", block: { _ in
                 vc.view.layoutIfNeeded()
-                vc.loadWeather()
+                vc.delegate?.loadWeather()
                 DispatchQueue.main.async {
                     let expected = "-5"
                     let actual = vc.minTempLabel.text

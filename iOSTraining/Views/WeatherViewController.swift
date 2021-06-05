@@ -7,12 +7,18 @@
 
 import UIKit
 
+protocol WeatherViewDelegate: AnyObject {
+    /// 天候情報をAPIから受け取る
+    func loadWeather()
+}
+
 class WeatherViewController: UIViewController {
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var minTempLabel: UILabel!
     @IBOutlet weak var maxTempLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    weak var delegate: WeatherViewDelegate?
     private let weatherModel: WeatherModelProtocol
     
     init(weatherModel: WeatherModelProtocol) {
@@ -24,36 +30,27 @@ class WeatherViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        Logging.log(message: #function)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         Logging.log(message: "start viewDidLoad")
         initView()
-        NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: nil, using: { _ in
-            self.loadWeather()
+        self.delegate = self
+        NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: nil, using: { [weak self] _ in
+            guard let self = self else { return }
+            self.delegate?.loadWeather()
         })
     }
     
     @IBAction private func onClickReloadButton(_ sender: Any) {
-        loadWeather()
+        self.delegate?.loadWeather()
     }
     
     @IBAction private func onClickCloseButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    /// 天候情報のロード処理
-    func loadWeather() {
-        self.activityIndicator.startAnimating()
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            let parameter = Parameter(area: Const.Place.tokyo, date: DateUtil.formatDate(format: Const.Date.yyyyMmDdTHhMmSsZZZZZ))
-            guard let jsonString = JsonUtil.jsonEncode(param: parameter) else { return }
-            self.weatherModel.fetchWeather(jsonString) { result in
-                DispatchQueue.main.async {
-                    self.refreshWeatherView(result)
-                }
-            }
-        }
     }
     
         
@@ -86,4 +83,21 @@ class WeatherViewController: UIViewController {
         self.activityIndicator.stopAnimating()
     }
     
+}
+
+extension WeatherViewController: WeatherViewDelegate {
+    /// 天候情報をAPIから受け取る
+    func loadWeather() {
+        self.activityIndicator.startAnimating()
+        DispatchQueue.global(qos: .userInitiated).async {
+            let parameter = Parameter(area: Const.Place.tokyo, date: DateUtil.formatDate(format: Const.Date.yyyyMmDdTHhMmSsZZZZZ))
+            guard let jsonString = JsonUtil.jsonEncode(param: parameter) else { return }
+            self.weatherModel.fetchWeather(jsonString) { [weak self] result in
+                guard let self = self else { return }
+                DispatchQueue.main.async {
+                    self.refreshWeatherView(result)
+                }
+            }
+        }
+    }
 }

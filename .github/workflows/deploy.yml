@@ -6,11 +6,15 @@ on:
       - main
     paths-ignore:
       - README.md
+      - .github/PULL_REQUEST_TEMPLATE.md
+      - .github/ISSUE_TEMPLATE/custom.md
   pull_request:
     branches:
       - main
     paths-ignore:
       - README.md
+      - .github/PULL_REQUEST_TEMPLATE.md
+      - .github/ISSUE_TEMPLATE/custom.md
 
   workflow_dispatch:
   
